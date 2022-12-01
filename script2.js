@@ -1,59 +1,89 @@
-//productos
 
-let productos = [
-    {id:1, nombreProducto:"Lampara de calabaza", precio:1600, stock:20, imageUrl:"/assets/lamparaCalabaza2.jpg"},
-    {id:2, nombreProducto:"Calavera", precio:3100, stock:20, imageUrl:"/assets/calavera2.jpg"},
-    {id:3, nombreProducto:"candelabro", precio:5600, stock:20, imageUrl:"/assets/candelabro2.jpg"},
-    {id:4, nombreProducto:"Esqueleto Pirata", precio:11200, stock:20, imageUrl:"/assets/esqueletoPirata2.jpg"},
-    {id:5, nombreProducto:"Michi esqueleto", precio:9800, stock:20, imageUrl:"/assets/michiEsqueleto2.jpg"},
-    {id:6, nombreProducto:"Plantera spooky", precio:1600, stock:20, imageUrl:"/assets/planterSpooky2.jpg"},
-    {id:7, nombreProducto:"Mano", precio:2600, stock:20, imageUrl:"/assets/mano2.jpg"}
-]
 
-let contenedorDeProductos = document.getElementById("contenedorProductos")
+//wheel
+function shuffle(array){
+    var currentIndex = array.length,
+    randomIndex;
 
-contenedorDeProductos.innerHTML = ''
-for ( const producto of productos ){
-    let tarjetaProducto = document.createElement('div')
-    tarjetaProducto.className = 'producto'
-    tarjetaProducto.innerHTML= `
-    <h4>${producto.nombreProducto}</h4>
-    <h5>$${producto.precio}</h5>
-    <h6>Quedan ${producto.stock} unidades</h6>
-    <img src=${producto.imageUrl}>
-    <button class="boton" id=${producto.id}> Agregar al carrito</button>
-    `
-    contenedorDeProductos.append(tarjetaProducto)
-} 
+    while(0 !== currentIndex){
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+            array[currentIndex],
+            array[currentIndex],
 
-//storage
-let botones = document.getElementsByClassName('boton')
-let carrito = document.getElementById('carrito')
-
-let carritoGuardado = [] 
-if(localStorage.getItem('carrito')){
-    carritoGuardado = JSON.parse(localStorage.getItem('carrito'))
-}
-for(const item of carritoGuardado) {
-    let productoBuscado = productos.find(producto => producto.id == item.id)
-    carrito.innerHTML += `
-        <div class="itemCarrito">
-        <p>${productoBuscado.nombreProducto}</p>
-        <p>${productoBuscado.precio}</p>
-        </div>
-        `
-}
-
-for(const boton of botones){
-    boton.onclick = (elemento) => {
-        let productoBuscado = productos.find(producto => producto.id == elemento.target.id)
-        carrito.innerHTML += `
-        <div class="itemCarrito">
-        <p>${productoBuscado.nombreProducto}</p>
-        <p>${productoBuscado.precio}</p>
-        </div>
-        `
-        carritoGuardado.push({id:productoBuscado.id,nombre:productoBuscado.nombreProducto,precio:productoBuscado.precio})
-        localStorage.setItem('carrito',JSON.stringify(carritoGuardado))
+        ];
     }
+    return array;
+
 }
+
+//creo una funcion spin con DOM, la cual va a hacer que gire, encuentre un item ganador y alerte del item en cuestion
+
+function spin() {
+    const box = document.getElementById("box");
+    const element = document.getElementById("mainbox");
+    let SelectedItem = "";
+    
+    let item1 = shuffle([1890, 2250, 2610]);
+    let item2 = shuffle([1850,2210,2570]);
+    let item3 = shuffle([1770,2130,2490]);
+    let item4 = shuffle([1810,2170,2530]);
+    let item5 = shuffle([1750,2110,2470]);
+    let item6 = shuffle([1630,1999,2350]);
+    let item7 = shuffle([1570,1930,2290]);
+    let item8 = shuffle([1570,1930,2290]);
+    let item9 = shuffle([1570,1930,2290]);
+    let item10 = shuffle([1570,1930,2290]);
+
+    let results = shuffle([
+        item1[0],
+        item2[0],
+        item3[0],
+        item4[0],
+        item5[0],
+        item6[0],
+        item7[0],
+        item8[0],
+        item9[0],
+        item10[0],
+    ]);
+
+    if(item1.includes(results[0]))SelectedItem = "CandyMan";
+    if(item2.includes(results[0]))SelectedItem = "Rosemarys baby";
+    if(item3.includes(results[0]))SelectedItem = "Hereditary";
+    if(item4.includes(results[0]))SelectedItem = "La cura siniestra";
+    if(item5.includes(results[0]))SelectedItem = "El orfanato";
+    if(item6.includes(results[0]))SelectedItem = "Deliver us from evil";
+    if(item7.includes(results[0]))SelectedItem = "Halloween";
+    if(item8.includes(results[0]))SelectedItem = "Ready or not";
+    if(item9.includes(results[0]))SelectedItem = "The night house";
+    if(item10.includes(results[0]))SelectedItem = "Geralds game";
+
+    box.style.setProperty("transition", "all ease 5s");
+    box.style.transform = "rotate(" + results[0] + "deg)";
+    element.classList.remove("animate");
+    setTimeout(function(){
+        element.classList.add("animate");
+
+    }, 5000);
+    setTimeout(function(){
+        applause.play();
+    Swal.fire({
+    title: 'Dulce o truco?',
+    html: 'Tu pelicula para esta noche es ' + SelectedItem + ' | ' + '<a href="#"> Mas info </a>',
+    imageUrl: '/assets/spooky.jpg',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+    })
+    }, 5500)
+
+    setTimeout(function(){
+        box.style.setProperty("transition", "initial");
+        box.style.transform = "rotate(90deg)";
+
+    }, 6000);
+}
+
+sessionStorage.setItem("Pelicula",SelectedItem );

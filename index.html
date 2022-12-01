@@ -1,78 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>proyecto01</title>
+    <!--importo boxicons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>proyecto final store</title>
+</head>
+<body>
     <!--header inicio-->
-    <header id="titulo1">
-        <h1>Spooky Wheel</h1>
+    <header>
+        <!--nav inicio-->
+        <div class="nav container">
+            <a href="spooky.html" class="logo">Ir a la spooky wheel</a>
+            <!--iconos de carrito de boxicons.com-->
+            <i class='bx bx-shopping-bag' id="cart-icon"></i>
+            <!--carrito-->
+            <div class="cart">
+                <h2 class="cart-title">Tu carrito</h2>
+                <!--contenido de carrito inicio-->
+                <div class="cart-content">
+
+                </div>
+                <!--total-->
+                <div class="total">
+                    <div class="total-title">Total </div>
+                    <div class="total-price">$0</div>
+                </div>
+                <!--boton comprar-->
+                <button type="button" class="btn-buy"> Comprar</button>
+                <!--cierre de carrito-->
+                <i class='bx bx-x' id="close-cart"></i>
+            </div>
+            <!--fin carrito-->
+        </div>
+        <!--nav fin-->
+
     </header>
     <!--header fin-->
-</head>
-
-<body>
-    <!--navegacion inicio-->
-    <div>
-        <ul>
-            <li id="barra1"></li>
-            <li id="barra2"></li>
-            <li id="barra3"></li>
-        </ul>
-        <!--navegacion fin-->
-        <!--pelicula del dia inicio-->
-        <main>
-            <div class="mainbox" id="mainbox">
-                <div class="box" id="box">
-                    <div class="box1">
-                        <!--items 1-->
-                        <span class="font span1">
-                            <h5>CandyMan</h5>
-                        </span>
-                        <span class="font span2">
-                            <h5>Rosemarys baby</h5>
-                        </span>
-                        <span class="font span3">
-                            <h5>Hereditary</h5>
-                        </span>
-                        <span class="font span4">
-                            <h5>La cura siniestra</h5>
-                        </span>
-                        <span class="font span5">
-                            <h5>El orfanato</h5>
-                        </span>
-                    </div>
-                    <div class="box2">
-                        <!--items 2-->
-                        <span class="font span1">
-                            <h5>Deliver us from evil</h5>
-                        </span>
-                        <span class="font span2">
-                            <h5>Halloween</h5>
-                        </span>
-                        <span class="font span3">
-                            <h5>Ready or not</h5>
-                        </span>
-                        <span class="font span4">
-                            <h5>The night house</h5>
-                        </span>
-                        <span class="font span5">
-                            <h5>Geralds game</h5>
-                        </span>
-                    </div>
-                </div>
-                <button class="spin" onclick="spin()"> SPIN </button>
-                <!--evento onclick-->
+    <!--shop inicio-->
+    <section class="shop container">
+        <h2 class="section-title">Shop productos</h2>
+        <!--contenido inicio-->
+        <div class="shop-content">
+            <!--box 1-->
+            <div class="product-box">
+                <img src="img/product1.jpg" alt="" class="product-img">
+                <h2 class="product-title">AEROREADY SHIRT</h2>
+                <div class="span price">$2500</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
             </div>
-            <audio controls="controls" id="applause" src="assets/applause.wav" type="audion/wav"></audio>
-            <audio controls="controls" id="wheel" src="assets/wheel.wav" type="audion/wav"></audio>
-        </main>
+            <!--box 2-->
+            <div class="product-box">
+                <img src="img/product2.jpg" alt="" class="product-img">
+                <h2 class="product-title">AURICULARES NEGROS</h2>
+                <div class="span price">$11000</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--box 3-->
+            <div class="product-box">
+                <img src="img/product3.jpg" alt="" class="product-img">
+                <h2 class="product-title">CAMPERA NEGRA</h2>
+                <div class="span price">$17000</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--box 4-->
+            <div class="product-box">
+                <img src="img/product4.jpg" alt="" class="product-img">
+                <h2 class="product-title">BOTELLA AZUL</h2>
+                <div class="span price">$5500</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--box 5-->
+            <div class="product-box">
+                <img src="img/product5.jpg" alt="" class="product-img">
+                <h2 class="product-title">LENTES</h2>
+                <div class="span price">$7000</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--box 6-->
+            <div class="product-box">
+                <img src="img/product6.jpg" alt="" class="product-img">
+                <h2 class="product-title">GORRO NEGRO</h2>
+                <div class="span price">$3300</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--box 7-->
+            <div class="product-box">
+                <img src="img/product7.jpg" alt="" class="product-img">
+                <h2 class="product-title">Mochila VERDE</h2>
+                <div class="span price">$8100</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--box 8-->
+            <div class="product-box">
+                <img src="img/product8.jpg" alt="" class="product-img">
+                <h2 class="product-title">ZAPATILLAS RUNNING</h2>
+                <div class="span price">$22000</div>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+        </div>
+        <!--contenido fin-->
+    </section>
+    <!--shop fin-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>

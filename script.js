@@ -1,96 +1,129 @@
-//nav bar inicio
-const lista = document.getElementById('barra1')
-lista.innerText = 'inicio'
-const lista3 = document.getElementById('barra2')
-lista3.innerHTML = '<a href="store.html">Nuestros Productos</a>'
-const lista4 = document.getElementById('barra3')
-lista4.innerText = 'Contacto'
-//nav bar fin
+//carrito logica
 
-//wheel
-function shuffle(array){
-    var currentIndex = array.length,
-    randomIndex;
+let cartIcon = document.querySelector("#cart-icon");
+let cart = document.querySelector(".cart");
+let closeCart = document.querySelector("#close-cart");
 
-    while(0 !== currentIndex){
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [array[currentIndex], array[randomIndex]] = [
-            array[currentIndex],
-            array[currentIndex],
+//cuando toco carrito se abre a la derecha pasando a active
+cartIcon.onclick = () => {
+    cart.classList.add("active");
+}
+closeCart.onclick = () => {
+    cart.classList.remove("active");
+}
 
-        ];
+//carrito wj
+if(document.readyState == 'loading'){
+    document.addEventListener('DOMContentLoaded', ready)
+}else{
+    ready();
+}
+
+//functions
+function ready(){
+    //remover items
+    var removeCartButtons = document.getElementsByClassName('cart-remove')
+    console.log(removeCartButtons)
+    for(var i = 0; i < removeCartButtons.length; i++){
+        var button = removeCartButtons[i]
+        button.addEventListener('click', removeCartItem)
     }
-    return array;
+    //cambio de cantidades
+    var quantityInputs = document.getElementsByClassName('cart-quantity')
+    for(var i = 0; i < quantityInputs.length; i++){
+        var input = quantityInputs[i]
+        input.addEventListener('change', quantityChanged)
+    }
+    //anadir a carrito
+    var addCart = document.getElementsByClassName('add-cart')
+    for(var i = 0; i < addCart.length; i++){
+        var button = addCart[i]
+        button.addEventListener('click', addCartClicked)
+    }
+    //comprar el carrito
+    document.getElementsByClassName('btn-buy')[0].addEventListener('click', buyButtonClicked)
+}
+//function buyButtonClicked
+function buyButtonClicked(){
+    Swal.fire('Orden confirmada')
+    var cartContent = document.getElementsByClassName('cart-content')[0]
+    while(cartContent.hasChildNodes()){
+        cartContent.removeChild(cartContent.firstChild);
+    }
+    updateTotal()
+}
+//function para remover item
+function removeCartItem (event){
+    var buttonClicked = event.target;
+    buttonClicked.parentElement.remove();
+    updateTotal();
 
 }
-
-//creo una funcion spin con DOM, la cual va a hacer que gire, encuentre un item ganador y alerte del item en cuestion
-
-function spin() {
-    const box = document.getElementById("box");
-    const element = document.getElementById("mainbox");
-    let SelectedItem = "";
-    
-    let item1 = shuffle([1890, 2250, 2610]);
-    let item2 = shuffle([1850,2210,2570]);
-    let item3 = shuffle([1770,2130,2490]);
-    let item4 = shuffle([1810,2170,2530]);
-    let item5 = shuffle([1750,2110,2470]);
-    let item6 = shuffle([1630,1999,2350]);
-    let item7 = shuffle([1570,1930,2290]);
-    let item8 = shuffle([1570,1930,2290]);
-    let item9 = shuffle([1570,1930,2290]);
-    let item10 = shuffle([1570,1930,2290]);
-
-    let results = shuffle([
-        item1[0],
-        item2[0],
-        item3[0],
-        item4[0],
-        item5[0],
-        item6[0],
-        item7[0],
-        item8[0],
-        item9[0],
-        item10[0],
-    ]);
-
-    if(item1.includes(results[0]))SelectedItem = "CandyMan";
-    if(item2.includes(results[0]))SelectedItem = "Rosemarys baby";
-    if(item3.includes(results[0]))SelectedItem = "Hereditary";
-    if(item4.includes(results[0]))SelectedItem = "La cura siniestra";
-    if(item5.includes(results[0]))SelectedItem = "El orfanato";
-    if(item6.includes(results[0]))SelectedItem = "Deliver us from evil";
-    if(item7.includes(results[0]))SelectedItem = "Halloween";
-    if(item8.includes(results[0]))SelectedItem = "Ready or not";
-    if(item9.includes(results[0]))SelectedItem = "The night house";
-    if(item10.includes(results[0]))SelectedItem = "Geralds game";
-
-    box.style.setProperty("transition", "all ease 5s");
-    box.style.transform = "rotate(" + results[0] + "deg)";
-    element.classList.remove("animate");
-    setTimeout(function(){
-        element.classList.add("animate");
-
-    }, 5000);
-    setTimeout(function(){
-        applause.play();
-    Swal.fire({
-    title: 'Dulce o truco?',
-    html: 'Tu pelicula para esta noche es ' + SelectedItem + ' | ' + '<a href="#"> Mas info </a>',
-    imageUrl: '/assets/spooky.jpg',
-    imageWidth: 400,
-    imageHeight: 200,
-    imageAlt: 'Custom image',
-    })
-    }, 5500)
-
-    setTimeout(function(){
-        box.style.setProperty("transition", "initial");
-        box.style.transform = "rotate(90deg)";
-
-    }, 6000);
+//cambio de cantidades
+function quantityChanged(event){
+    var input = event.target;
+    if(isNaN(input.value) || input.value <= 0){
+        input.value = 1;
+    }
+    updateTotal();
 }
 
-sessionStorage.setItem("Pelicula",SelectedItem );
+//anadir a carrito
+function addCartClicked(event){
+    var button = event.target;
+    var shopProducts = button.parentElement
+    var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
+    var price = shopProducts.getElementsByClassName('price')[0].innerText;
+    var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
+    addProductToCart(title , price, productImg);
+    updateTotal();
+}
+//funcion addProductToCart
+function addProductToCart(title , price, productImg) {
+    var cartShopBox = document.createElement('div');
+    cartShopBox.classList.add('cart-box');
+    var cartItems = document.getElementsByClassName('cart-content')[0];
+    var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
+    for(var i = 0; i < cartItemsNames.length; i++) {
+        if(cartItemsNames[i].innerText == title) {
+        Swal.fire('Ya anadiste este item al carrito');
+        return;
+    }
+}
+    var cartBoxContent = `
+                            <img src="${productImg}" alt="" class="cart-img">
+                            <div class="detail-box">
+                                <div class="cart-product-title">${title}</div>
+                                <div class="cart-price">${price}</div>
+                                <input type="number" value="1" class="cart-quantity">
+                            </div>
+                            <!--remove cart-->
+                            <i class='bx bx-trash-alt cart-remove'></i>`;
+    cartShopBox.innerHTML = cartBoxContent
+    cartItems.append(cartShopBox);
+    cartShopBox
+        .getElementsByClassName('cart-remove')[0]
+        .addEventListener('click', removeCartItem);
+    cartShopBox
+        .getElementsByClassName('cart-quantity')[0]
+        .addEventListener('change', quantityChanged);}
+
+//update del total
+function updateTotal(){
+    var cartContent = document.getElementsByClassName("cart-content")[0];
+    var cartBoxes = cartContent.getElementsByClassName("cart-box");
+    var total = 0;
+    for(var i = 0; i < cartBoxes.length; i++){
+        var cartBox = cartBoxes[i];
+        var priceElement = cartBox.getElementsByClassName('cart-price')[0];
+        var quantityElement = cartBox.getElementsByClassName('cart-quantity')[0];
+        var price = parseFloat(priceElement.innerText.replace('$', ''));
+        var quantity = quantityElement.value;
+        total = total + price * quantity;
+    }
+        //por si el precio contiene centavos
+        total = Math.round(total * 100) / 100;
+        
+        document.getElementsByClassName('total-price')[0].innerText = '$' + total;
+
+}
