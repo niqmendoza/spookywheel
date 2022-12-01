@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style2.css">
+    <title>spooky wheel</title>
+</head>
+<body>
+    <header>
+        <div class="nav container">
+            <a href="index.html" class="logo">IR A LA SPOOKY STORE</a>
+            <i class='bx bx-shopping-bag' id="cart-icon"></i>
+            <!--iconos de carrito de boxicons.com-->
+    </header>
+    <h1>Descubri tu pelicula para esta noche</h1>
+    <main>
+        <div class="mainbox" id="mainbox">
+            <div class="box" id="box">
+                <div class="box1">
+                    <!--items 1-->
+                    <span class="font span1">
+                        <h5>CandyMan</h5>
+                    </span>
+                    <span class="font span2">
+                        <h5>Rosemarys baby</h5>
+                    </span>
+                    <span class="font span3">
+                        <h5>Hereditary</h5>
+                    </span>
+                    <span class="font span4">
+                        <h5>La cura siniestra</h5>
+                    </span>
+                    <span class="font span5">
+                        <h5>El orfanato</h5>
+                    </span>
+                </div>
+                <div class="box2">
+                    <!--items 2-->
+                    <span class="font span1">
+                        <h5>Deliver us from evil</h5>
+                    </span>
+                    <span class="font span2">
+                        <h5>Halloween</h5>
+                    </span>
+                    <span class="font span3">
+                        <h5>Ready or not</h5>
+                    </span>
+                    <span class="font span4">
+                        <h5>The night house</h5>
+                    </span>
+                    <span class="font span5">
+                        <h5>Geralds game</h5>
+                    </span>
+                </div>
+            </div>
+            <button class="spin" onclick="spin()"> SPIN </button>
+            <!--evento onclick-->
+        </div>
+        <audio controls="controls" id="applause" src="assets/applause.wav" type="audion/wav"></audio>
+        <audio controls="controls" id="wheel" src="assets/wheel.wav" type="audion/wav"></audio>
+    </main>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="script2.js"></script>
+</body>
+</html>

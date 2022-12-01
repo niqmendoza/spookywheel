@@ -1,0 +1,250 @@
+/*google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Poppins:wght@100;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 2rem;
+    scroll-behavior:smooth;
+    box-sizing: border-box;
+    list-style:none;
+    text-decoration:none;
+    outline: none;
+}
+
+:root {
+    --main-color: #db9898;
+    --text-color: #171427;
+    --bg-color: #e76f51;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: var(--bg-color);
+    box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
+    z-index: 100;
+    text-align: center;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f5c28c;
+    opacity:90% ; 
+    padding: 100px;
+
+    
+}
+
+
+
+.mainbox {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin-top: 100px;
+    left: 32%;
+    
+}
+
+.mainbox:after {
+    position: absolute;
+    content:"";
+    width: 100%;
+    height: 100%;
+    background:url(/assets/arrow3.png) no-repeat;
+    background-size: 20%;
+    left: 60%;
+    top: -83%;
+    transform: rotate(-90deg);
+    
+
+    
+}
+.box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+    border: 10px solid whitesmoke;
+    overflow: hidden;
+    transition: all ease-in-out 5s;
+    transform: rotate(90deg);
+}
+span{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: absolute;
+}
+
+/*colores de los items de la rueda*/
+
+.span1{
+    clip-path: polygon(0 17%, 0 50%, 50% 50%); 
+    background-color: green;
+}
+.span2{
+    clip-path: polygon(0 17%, 30% 0, 50% 50%); 
+    background-color: red;
+}
+.span3{
+    clip-path: polygon(30% 0, 71% 0, 50% 50%); 
+    background-color:blue;
+}
+.span4{
+    clip-path: polygon(71% 0, 100% 18%, 50% 50%); 
+    background-color:salmon;
+}
+.span5{
+    clip-path: polygon(100% 18%, 100% 50%, 50% 50%); 
+    background-color:#ff8300;
+}
+.box2 .span3{
+    background-color: #00ff04;
+}
+.box2{
+    width: 100%;
+    height: 100%;
+    transform: rotate(180deg);
+}
+
+.box2 .span1{
+    background: #333;
+}
+
+.font{
+    color: #fff;
+    font-size: 20px;
+}
+
+/*contenido de la rueda*/
+.box1 .span1 h5{
+    position: absolute;
+    top: 40%;
+    right: 63%;
+    transform: rotate(200deg);
+    text-align: center;
+}
+.box1 .span2 h5{
+    position: absolute;
+    top: 30%;
+    right: 57%;
+    transform: rotate(-130deg);
+    text-align: center;
+}
+.box1 .span3 h5{
+    position: absolute;
+    top: 22%;
+    right: 38%;
+    transform: rotate(-90deg);
+    text-align: center;
+}
+.box1 .span4 h5{
+    position: absolute;
+    top: 25%;
+    right: 16%;
+    transform: rotate(-45deg);
+    text-align: center;
+}
+.box1 .span5 h5{
+    position: absolute;
+    top: 40%;
+    right: 6%;
+    transform: rotate(-15deg);
+    text-align: center;
+}
+.box2 .span1 h5{
+    font-size: 20px;
+    position: absolute;
+    top: 40%;
+    right: 60%;
+    transform: rotate(195deg);
+    text-align: center;
+}
+.box2 .span2 h5{
+    font-size: 30px;
+    position: absolute;
+    top: 28%;
+    right: 54%;
+    transform: rotate(-130deg);
+    text-align: center;
+}
+.box2 .span3 h5{
+    font-size: 20px;
+    position: absolute;
+    top: 15%;
+    right: 40%;
+    transform: rotate(90deg);
+    text-align: center;
+}
+.box2 .span4 h5{
+    font-size: 22px;
+    position: absolute;
+    top: 20%;
+    right: 15%;
+    transform: rotate(120deg);
+    text-align: center;
+}
+.box2 .span5 h5{
+    font-size: 30px;
+    position: absolute;
+    top: 38%;
+    right: 6%;
+    transform: rotate(-20deg);
+    text-align: center;
+}
+
+/*boton spin*/
+.spin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: #1d76e5;
+    color: #fff;
+    box-shadow: 0 5px 20px #000;
+    font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1000;
+}
+spin:active{
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+}
+.mainbox.animate:after {
+    animation: animateArrow 0.7 ease infinite;
+}
+audio{
+    display: none;
+
+}
+
+@keyframes animateArrow {
+    50% {
+        right: -50px;
+    }
+}
+h2{
+    background-color: antiquewhite;
+    text-align: center;
+}
+.tablee {
+    background-color: rgb(211, 173, 50);
+    height: 250px;
+    width: 1500px;
+}
